@@ -6,9 +6,12 @@ import ItemTable from "./ItemTable";
 
 const ThumbnailContainer = () => {
   return (
-    <Container maxWidth="sm">
-      <Box m="auto">
+    <Container>
+      <Box m="auto" maxWidth="sm">
         <ItemForm />
+      </Box>
+
+      <Box>
         <ItemTable />
       </Box>
     </Container>

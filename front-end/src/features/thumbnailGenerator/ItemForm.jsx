@@ -28,9 +28,9 @@ const ItemForm = () => {
             >
               Name
             </InputLabel>
-            <Input sx={{ width: "200px" }} color="success" id="my-input" />
+            <Input sx={{ width: "253px" }} color="success" id="my-input" />
             <Button
-              sx={{ marginLeft: "20px", width: "300px" }}
+              sx={{ marginLeft: "15px", width: "300px" }}
               variant="contained"
               color="primary"
             >
