@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@uppy/core": "^3.2.0",
     "@uppy/dashboard": "^3.4.0",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
