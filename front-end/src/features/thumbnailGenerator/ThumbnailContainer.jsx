@@ -10,7 +10,6 @@ const ThumbnailContainer = () => {
       <Box m="auto" maxWidth="sm">
         <ItemForm />
       </Box>
-
       <Box>
         <ItemTable />
       </Box>

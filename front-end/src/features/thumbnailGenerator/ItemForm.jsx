@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -9,28 +9,36 @@ import {
   Button,
   FormGroup,
   Divider,
-} from "@mui/material";
+} from '@mui/material';
 
 const ItemForm = () => {
+  const [name, setName] = useState('');
+  const [file, setFile] = useState(null);
+
   return (
-    <Card sx={{ minWidth: 275, marginTop: "40px" }} raised>
+    <Card sx={{ minWidth: 275, marginTop: '40px' }} raised>
       <CardContent>
         <Typography variant="h5" component="div">
           Add An Item
         </Typography>
         <Divider variant="fullWidth" />
         <FormControl>
-          <FormGroup row sx={{ marginTop: "20px" }}>
+          <FormGroup row sx={{ marginTop: '20px' }}>
             <InputLabel
               color="success"
-              sx={{ marginTop: "20px" }}
+              sx={{ marginTop: '20px' }}
               htmlFor="my-input"
             >
               Name
             </InputLabel>
-            <Input sx={{ width: "253px" }} color="success" id="my-input" />
+            <Input
+              sx={{ width: '253px' }}
+              onChange={(e) => setName(e.target.value)}
+              color="success"
+              id="my-input"
+            />
             <Button
-              sx={{ marginLeft: "15px", width: "300px" }}
+              sx={{ marginLeft: '15px', width: '300px' }}
               variant="contained"
               color="primary"
             >
@@ -38,7 +46,7 @@ const ItemForm = () => {
             </Button>
           </FormGroup>
           <Button
-            sx={{ marginTop: "20px" }}
+            sx={{ marginTop: '20px' }}
             variant="contained"
             color="success"
           >

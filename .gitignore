@@ -5,3 +5,4 @@ back-end/node_modules
 front-end/node_modules
 
 .DS_Store
+*/.env
