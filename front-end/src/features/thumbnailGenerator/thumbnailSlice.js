@@ -9,19 +9,18 @@ const initialState = {
 };
 
 export const fetchItems = createAsyncThunk('thumbnail/fetchItems', async () => {
-  console.log('yo yo');
   try {
     const items = await axios.get(path);
-    console.log({ items });
     return items;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
 export const addItem = createAsyncThunk('thumbnail/addItem', async (item) => {
   try {
-    await axios.post(path, item);
+    const items = await axios.post(path, item);
+    return items;
   } catch (error) {
     console.log(error);
   }
@@ -45,6 +44,7 @@ export const thumbnailSlice = createSlice({
       })
       .addCase(addItem.fulfilled, (state, action) => {
         state.status = 'idle';
+        state.items = action.payload.data[0];
       });
   },
 });

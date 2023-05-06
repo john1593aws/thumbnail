@@ -20,10 +20,13 @@ router.get('/', async function (req, res, next) {
 router.post('/', async (req, res, next) => {
   const id = cuuid();
   try {
-    const item = await sequelize.query(
-      `INSERT INTO item.items(name, id) VALUES ('${req.body.name}', '${id}');`
+    await sequelize.query(
+      `INSERT INTO item.items(name, id) VALUES ('${req.body.name}', '${id}')`
     );
-    res.send(item);
+    const items = await sequelize.query(
+      'SELECT id, name FROM item.items As item;'
+    );
+    res.send(items);
   } catch (error) {
     res.send('Items POST ERROR: ', error);
   }

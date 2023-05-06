@@ -10,10 +10,17 @@ import {
   FormGroup,
   Divider,
 } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { addItem } from './thumbnailSlice';
 
 const ItemForm = () => {
   const [name, setName] = useState('');
-  const [file, setFile] = useState(null);
+
+  const dispatch = useDispatch();
+
+  function add() {
+    dispatch(addItem({ name }));
+  }
 
   return (
     <Card sx={{ minWidth: 275, marginTop: '40px' }} raised>
@@ -49,6 +56,7 @@ const ItemForm = () => {
             sx={{ marginTop: '20px' }}
             variant="contained"
             color="success"
+            onClick={add}
           >
             Add
           </Button>

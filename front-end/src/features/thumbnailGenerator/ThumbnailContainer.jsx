@@ -1,5 +1,5 @@
 import { Container, Box } from '@mui/material';
-import { addItem, fetchItems } from './thumbnailSlice';
+import { fetchItems } from './thumbnailSlice';
 import ItemForm from './ItemForm';
 import ItemTable from './ItemTable';
 import { useEffect } from 'react';
@@ -11,6 +11,7 @@ const ThumbnailContainer = () => {
     async function fetchItemsEffect() {
       dispatch(fetchItems());
     }
+    console.log('yo');
     fetchItemsEffect();
   }, [dispatch]);
 
