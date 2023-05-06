@@ -27,11 +27,15 @@ const ItemForm = () => {
     <Card sx={{ minWidth: 275, marginTop: '40px', textAlign: 'center' }} raised>
       <CardContent>
         <Grid container flex rowSpacing={2}>
-          <Grid item xs={12} justifyContent={'space-betweenß'}>
-            <Typography variant="h5" component="div">
+          <Grid item xs={12} justifyContent={'space-between'}>
+            <Typography
+              variant="h5"
+              component="div"
+              color={'grey'}
+              borderBottom={'grey 1px solid'}
+            >
               Add An Item
             </Typography>
-            <Divider variant="fullWidth" />
           </Grid>
           <Grid item xs={12}>
             <Input
