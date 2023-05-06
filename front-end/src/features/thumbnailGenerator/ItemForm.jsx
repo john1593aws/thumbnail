@@ -33,26 +33,13 @@ const ItemForm = () => {
             </Typography>
             <Divider variant="fullWidth" />
           </Grid>
-          <Grid
-            container
-            item
-            justifyContent={'space-between'}
-            alignItems={'center'}
-            columnSpacing={3}
-          >
-            <Grid item xs={6}>
-              <Input
-                fullWidth
-                onChange={(e) => setName(e.target.value)}
-                color="success"
-                placeholder="Name"
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Button variant="contained" color="primary" fullWidth>
-                Upload
-              </Button>
-            </Grid>
+          <Grid item xs={12}>
+            <Input
+              fullWidth
+              onChange={(e) => setName(e.target.value)}
+              color="success"
+              placeholder="Name"
+            />
           </Grid>
           <Grid item xs={'12'}>
             <Button fullWidth variant="contained" color="success" onClick={add}>
