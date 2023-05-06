@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import {
-  FormControl,
-  InputLabel,
   Input,
   Card,
   CardContent,
   Typography,
   Button,
-  FormGroup,
-  Divider,
   Grid,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
@@ -16,7 +12,6 @@ import { addItem } from './thumbnailSlice';
 
 const ItemForm = () => {
   const [name, setName] = useState('');
-
   const dispatch = useDispatch();
 
   function add() {
