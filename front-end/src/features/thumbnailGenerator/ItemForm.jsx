@@ -9,6 +9,7 @@ import {
   Button,
   FormGroup,
   Divider,
+  Grid,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addItem } from './thumbnailSlice';
@@ -23,44 +24,42 @@ const ItemForm = () => {
   }
 
   return (
-    <Card sx={{ minWidth: 275, marginTop: '40px' }} raised>
+    <Card sx={{ minWidth: 275, marginTop: '40px', textAlign: 'center' }} raised>
       <CardContent>
-        <Typography variant="h5" component="div">
-          Add An Item
-        </Typography>
-        <Divider variant="fullWidth" />
-        <FormControl>
-          <FormGroup row sx={{ marginTop: '20px' }}>
-            <InputLabel
-              color="success"
-              sx={{ marginTop: '20px' }}
-              htmlFor="my-input"
-            >
-              Name
-            </InputLabel>
-            <Input
-              sx={{ width: '253px' }}
-              onChange={(e) => setName(e.target.value)}
-              color="success"
-              id="my-input"
-            />
-            <Button
-              sx={{ marginLeft: '15px', width: '300px' }}
-              variant="contained"
-              color="primary"
-            >
-              Upload
-            </Button>
-          </FormGroup>
-          <Button
-            sx={{ marginTop: '20px' }}
-            variant="contained"
-            color="success"
-            onClick={add}
+        <Grid container flex rowSpacing={2}>
+          <Grid item xs={12} justifyContent={'space-betweenß'}>
+            <Typography variant="h5" component="div">
+              Add An Item
+            </Typography>
+            <Divider variant="fullWidth" />
+          </Grid>
+          <Grid
+            container
+            item
+            justifyContent={'space-between'}
+            alignItems={'center'}
+            columnSpacing={3}
           >
-            Add
-          </Button>
-        </FormControl>
+            <Grid item xs={6}>
+              <Input
+                fullWidth
+                onChange={(e) => setName(e.target.value)}
+                color="success"
+                placeholder="Name"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Button variant="contained" color="primary" fullWidth>
+                Upload
+              </Button>
+            </Grid>
+          </Grid>
+          <Grid item xs={'12'}>
+            <Button fullWidth variant="contained" color="success" onClick={add}>
+              Add
+            </Button>
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   );
