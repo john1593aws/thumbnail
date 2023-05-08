@@ -48,7 +48,6 @@ const ItemTable = () => {
                     <TableCell align="left">{row.name}</TableCell>
                     <TableCell align="right">
                       <IconButton>
-                        <input hidden accept="image/*" type="file" />
                         <FindInPageIcon color="disabled" />
                       </IconButton>
                     </TableCell>
