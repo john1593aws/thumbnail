@@ -34,7 +34,7 @@ const ItemForm = () => {
               fullWidth
               onChange={(e) => setName(e.target.value)}
               value={name}
-              color="success"
+              color="info"
               placeholder="Name"
             />
           </Grid>
