@@ -34,9 +34,9 @@ const ItemTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {items.map((row) => {
+              {items.map((row, i) => {
                 return (
-                  <TableRow key={row.name}>
+                  <TableRow key={i}>
                     <TableCell align="left">{row.id}</TableCell>
                     <TableCell align="left">{row.name}</TableCell>
                     <TableCell align="right">

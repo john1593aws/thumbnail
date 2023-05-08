@@ -18,8 +18,13 @@ export const fetchItems = createAsyncThunk('thumbnail/fetchItems', async () => {
 });
 
 export const addItem = createAsyncThunk('thumbnail/addItem', async (item) => {
+  console.log(item);
   try {
-    const items = await axios.post(path, item);
+    const items = await axios.post(path, item, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return items;
   } catch (error) {
     console.log(error);

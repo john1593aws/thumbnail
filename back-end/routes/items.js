@@ -19,9 +19,12 @@ router.get('/', async function (req, res, next) {
 
 router.post('/', async (req, res, next) => {
   const id = cuuid();
+  const { name, file } = req.body;
+  console.log({ file });
+
   try {
     await sequelize.query(
-      `INSERT INTO item.items(name, id) VALUES ('${req.body.name}', '${id}')`
+      `INSERT INTO item.items(name, id) VALUES ('${name}', '${id}')`
     );
     const items = await sequelize.query(
       'SELECT id, name FROM item.items As item;'
