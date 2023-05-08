@@ -39,6 +39,11 @@ const ItemForm = () => {
             />
           </Grid>
           <Grid item xs={'12'}>
+            <Button fullWidth variant="contained" color="info">
+              Upload
+            </Button>
+          </Grid>
+          <Grid item xs={'12'}>
             <Button fullWidth variant="contained" color="success" onClick={add}>
               Add
             </Button>
