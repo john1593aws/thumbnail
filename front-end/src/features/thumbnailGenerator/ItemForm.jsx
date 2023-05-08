@@ -12,23 +12,20 @@ import { addItem } from './thumbnailSlice';
 
 const ItemForm = () => {
   const [name, setName] = useState('');
+
   const dispatch = useDispatch();
 
   function add() {
     dispatch(addItem({ name }));
+    setName('');
   }
 
   return (
-    <Card sx={{ minWidth: 275, marginTop: '40px', textAlign: 'center' }} raised>
+    <Card sx={{ marginTop: '40px', textAlign: 'center' }} raised>
       <CardContent>
         <Grid container flex rowSpacing={2}>
           <Grid item xs={12} justifyContent={'space-between'}>
-            <Typography
-              variant="h5"
-              component="div"
-              color={'grey'}
-              borderBottom={'grey 1px solid'}
-            >
+            <Typography variant="h5" color={'grey'}>
               Add An Item
             </Typography>
           </Grid>
@@ -36,6 +33,7 @@ const ItemForm = () => {
             <Input
               fullWidth
               onChange={(e) => setName(e.target.value)}
+              value={name}
               color="success"
               placeholder="Name"
             />

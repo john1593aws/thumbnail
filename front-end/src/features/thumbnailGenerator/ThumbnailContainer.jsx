@@ -11,7 +11,7 @@ const ThumbnailContainer = () => {
     async function fetchItemsEffect() {
       dispatch(fetchItems());
     }
-    console.log('yo');
+
     fetchItemsEffect();
   }, [dispatch]);
 
@@ -20,7 +20,7 @@ const ThumbnailContainer = () => {
       <Box m="auto" maxWidth="sm">
         <ItemForm />
       </Box>
-      <Box>
+      <Box m="auto" maxWidth="md">
         <ItemTable />
       </Box>
     </Container>
