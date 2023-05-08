@@ -6,22 +6,15 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Paper,
   Card,
   CardContent,
-  Skeleton,
-  Typography,
-  Button,
   IconButton,
 } from '@mui/material';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
 import { useSelector } from 'react-redux';
 
 const ItemTable = () => {
-  const [items, status] = useSelector((state) => [
-    state.thumbnailGenerator.items,
-    state.thumbnailGenerator.status,
-  ]);
+  const [items] = useSelector((state) => [state.thumbnailGenerator.items]);
 
   return (
     <Card
