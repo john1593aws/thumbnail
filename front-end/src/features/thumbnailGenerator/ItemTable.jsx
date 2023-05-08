@@ -11,7 +11,10 @@ import {
   CardContent,
   Skeleton,
   Typography,
+  Button,
+  IconButton,
 } from '@mui/material';
+import FindInPageIcon from '@mui/icons-material/FindInPage';
 import { useSelector } from 'react-redux';
 
 const ItemTable = () => {
@@ -34,6 +37,7 @@ const ItemTable = () => {
               <TableRow>
                 <TableCell align="left">ID</TableCell>
                 <TableCell align="left">Name</TableCell>
+                <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -42,6 +46,12 @@ const ItemTable = () => {
                   <TableRow key={row.name}>
                     <TableCell align="left">{row.id}</TableCell>
                     <TableCell align="left">{row.name}</TableCell>
+                    <TableCell align="right">
+                      <IconButton>
+                        <input hidden accept="image/*" type="file" />
+                        <FindInPageIcon color="disabled" />
+                      </IconButton>
+                    </TableCell>
                   </TableRow>
                 );
               })}
