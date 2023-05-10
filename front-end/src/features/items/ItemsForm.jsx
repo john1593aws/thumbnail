@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addItem } from './itemsSlice';
+import FileDropzone from '../common/FileDropzone';
 
 const ItemForm = () => {
   const [name, setName] = useState('');
@@ -39,14 +40,7 @@ const ItemForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button
-              fullWidth
-              variant="contained"
-              color="info"
-              component="label"
-            >
-              Upload
-            </Button>
+            <FileDropzone />
           </Grid>
           <Grid item xs={12}>
             <Button fullWidth variant="contained" color="success" onClick={add}>
