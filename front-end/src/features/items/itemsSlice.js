@@ -22,16 +22,16 @@ export const addItem = createAsyncThunk('items/addItem', async (item) => {
     const formData = new FormData();
     const { fileData } = item;
 
-    formData.append('file', fileData[0]);
+    formData.append('file', { ...fileData[0] });
     const data = { ...item };
     console.log(data);
-    // const payload = await axios.post(path, data, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    // });
+    const payload = await axios.post(path, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
-    const payload = await axios.post(path, data);
+    // const payload = await axios.post(path, data);
     return JSON.stringify(payload);
   } catch (error) {
     console.log(error);

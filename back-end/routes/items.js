@@ -7,7 +7,7 @@ var router = express.Router();
 
 const cuuid = require('cuuid');
 
-router.get('/', async function (req, res, next) {
+router.get('/', async function (req, res) {
   try {
     const items = await sequelize.query(
       'SELECT id, name FROM item.items As item;'
@@ -18,7 +18,7 @@ router.get('/', async function (req, res, next) {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', upload.any(), async (req, res) => {
   const id = cuuid();
   const { name } = req.body;
 
