@@ -13,12 +13,14 @@ import FileDropzone from '../common/FileDropzone';
 
 const ItemForm = () => {
   const [name, setName] = useState('');
+  const [file, setFile] = useState(null);
 
   const dispatch = useDispatch();
 
   function add() {
-    dispatch(addItem({ name }));
+    dispatch(addItem({ name, file }));
     setName('');
+    setFile(null);
   }
 
   return (
@@ -40,7 +42,7 @@ const ItemForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <FileDropzone />
+            <FileDropzone setFile={setFile} />
           </Grid>
           <Grid item xs={12}>
             <Button fullWidth variant="contained" color="success" onClick={add}>

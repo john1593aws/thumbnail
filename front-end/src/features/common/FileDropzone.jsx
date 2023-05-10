@@ -30,14 +30,18 @@ const rejectStyle = {
   borderColor: '#ff1744',
 };
 
-function FileDropzone() {
-  const onDrop = useCallback((acceptedFiles) => {
-    // Do something with the files
-    console.log(acceptedFiles);
-  }, []);
+function FileDropzone({ setFile }) {
+  const onDrop = useCallback(
+    (acceptedFile) => {
+      // Do something with the files
+      setFile(acceptedFile);
+      console.log(acceptedFile);
+    },
+    [setFile]
+  );
 
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
-    useDropzone({ onDrop });
+    useDropzone({ onDrop, maxFiles: 1 });
 
   const style = useMemo(
     () => ({
@@ -52,7 +56,9 @@ function FileDropzone() {
   return (
     <div className="container">
       <div {...getRootProps({ style })}>
-        <input {...getInputProps()} />
+        <form action="/items" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" {...getInputProps()} />
+        </form>
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
     </div>
