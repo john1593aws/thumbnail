@@ -12,20 +12,12 @@ import { addItem } from './itemsSlice';
 
 const ItemForm = () => {
   const [name, setName] = useState('');
-  const [file, setFile] = useState();
 
   const dispatch = useDispatch();
 
   function add() {
-    dispatch(addItem({ name, file }));
+    dispatch(addItem({ name }));
     setName('');
-    setFile();
-  }
-
-  function handleFileChange(e) {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
   }
 
   return (
@@ -54,7 +46,7 @@ const ItemForm = () => {
               component="label"
             >
               Upload
-              <input hidden multiple type="file" onChange={handleFileChange} />
+              <input hidden multiple type="file" onChange={() => {}} />
             </Button>
           </Grid>
           <Grid item xs={12}>

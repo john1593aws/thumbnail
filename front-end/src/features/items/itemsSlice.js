@@ -18,7 +18,6 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
 });
 
 export const addItem = createAsyncThunk('items/addItem', async (item) => {
-  console.log(item);
   try {
     const items = await axios.post(path, item, {
       headers: {
