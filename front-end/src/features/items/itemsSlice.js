@@ -19,12 +19,9 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
 
 export const addItem = createAsyncThunk('items/addItem', async (item) => {
   try {
-    const items = await axios.post(path, item, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    return items;
+    const res = await axios.post(path, item);
+
+    return res;
   } catch (error) {
     console.log(error);
   }
@@ -48,7 +45,7 @@ export const itemsSlice = createSlice({
       })
       .addCase(addItem.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items = action.payload.data[0];
+        state.items = action.payload.data[0].reverse();
       });
   },
 });
