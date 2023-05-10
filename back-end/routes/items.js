@@ -19,8 +19,7 @@ router.get('/', async function (req, res, next) {
 
 router.post('/', async (req, res, next) => {
   const id = cuuid();
-  const { name, file } = req.body;
-  console.log({ file });
+  const { name } = req.body;
 
   try {
     await sequelize.query(
