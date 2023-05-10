@@ -4,8 +4,7 @@ const { sequelize } = require('../db');
 var router = express.Router();
 
 const cuuid = require('cuuid');
-// const sequelize = await connect();
-/* GET users listing. */
+
 router.get('/', async function (req, res, next) {
   try {
     const items = await sequelize.query(
