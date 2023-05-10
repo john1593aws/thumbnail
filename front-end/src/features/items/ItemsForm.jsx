@@ -46,7 +46,6 @@ const ItemForm = () => {
               component="label"
             >
               Upload
-              <input hidden multiple type="file" onChange={() => {}} />
             </Button>
           </Grid>
           <Grid item xs={12}>

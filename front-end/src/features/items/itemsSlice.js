@@ -10,8 +10,8 @@ const initialState = {
 
 export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
   try {
-    const items = await axios.get(path);
-    return items;
+    const payload = await axios.get(path);
+    return JSON.stringify(payload);
   } catch (error) {
     console.error(error);
   }
@@ -19,9 +19,8 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
 
 export const addItem = createAsyncThunk('items/addItem', async (item) => {
   try {
-    const res = await axios.post(path, item);
-
-    return res;
+    const payload = await axios.post(path, item);
+    return JSON.stringify(payload);
   } catch (error) {
     console.log(error);
   }
@@ -38,14 +37,14 @@ export const itemsSlice = createSlice({
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items = action.payload.data[0];
+        state.items = JSON.parse(action.payload).data[0].reverse();
       })
       .addCase(addItem.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(addItem.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items = action.payload.data[0].reverse();
+        state.items = JSON.parse(action.payload).data[0].reverse();
       });
   },
 });
