@@ -8,7 +8,7 @@ const initialState = {
   status: 'idle',
 };
 
-export const fetchItems = createAsyncThunk('thumbnail/fetchItems', async () => {
+export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
   try {
     const items = await axios.get(path);
     return items;
@@ -17,7 +17,7 @@ export const fetchItems = createAsyncThunk('thumbnail/fetchItems', async () => {
   }
 });
 
-export const addItem = createAsyncThunk('thumbnail/addItem', async (item) => {
+export const addItem = createAsyncThunk('items/addItem', async (item) => {
   console.log(item);
   try {
     const items = await axios.post(path, item, {
@@ -31,8 +31,8 @@ export const addItem = createAsyncThunk('thumbnail/addItem', async (item) => {
   }
 });
 
-export const thumbnailSlice = createSlice({
-  name: 'thumbnail',
+export const itemsSlice = createSlice({
+  name: 'itemsSlice',
   initialState,
 
   extraReducers: (builder) => {
@@ -54,4 +54,4 @@ export const thumbnailSlice = createSlice({
   },
 });
 
-export default thumbnailSlice.reducer;
+export default itemsSlice.reducer;

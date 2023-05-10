@@ -8,7 +8,7 @@ import {
   Grid,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { addItem } from './thumbnailSlice';
+import { addItem } from './itemsSlice';
 
 const ItemForm = () => {
   const [name, setName] = useState('');

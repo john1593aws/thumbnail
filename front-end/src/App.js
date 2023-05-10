@@ -1,10 +1,10 @@
-import React from "react";
-import ThumbnailContainer from "./features/thumbnailGenerator/ThumbnailContainer";
+import React from 'react';
+import ItemContainer from './features/items/ItemsContainer';
 
 function App() {
   return (
     <div className="App">
-      <ThumbnailContainer />
+      <ItemContainer />
     </div>
   );
 }

@@ -13,8 +13,8 @@ import {
 import FindInPageIcon from '@mui/icons-material/FindInPage';
 import { useSelector } from 'react-redux';
 
-const ItemTable = () => {
-  const [items] = useSelector((state) => [state.thumbnailGenerator.items]);
+const ItemsTable = () => {
+  const [items] = useSelector((state) => [state.itemsSlice.items]);
 
   return (
     <Card
@@ -55,4 +55,4 @@ const ItemTable = () => {
   );
 };
 
-export default ItemTable;
+export default ItemsTable;

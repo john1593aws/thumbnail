@@ -1,11 +1,11 @@
 import { Container, Box } from '@mui/material';
-import { fetchItems } from './thumbnailSlice';
-import ItemForm from './ItemForm';
-import ItemTable from './ItemTable';
+import { fetchItems } from './itemsSlice';
+import ItemsForm from './ItemsForm';
+import ItemsTable from './ItemsTable';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-const ThumbnailContainer = () => {
+const ItemsContainer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     async function fetchItemsEffect() {
@@ -18,13 +18,13 @@ const ThumbnailContainer = () => {
   return (
     <Container>
       <Box m="auto" maxWidth="sm">
-        <ItemForm />
+        <ItemsForm />
       </Box>
       <Box m="auto" maxWidth="md">
-        <ItemTable />
+        <ItemsTable />
       </Box>
     </Container>
   );
 };
 
-export default ThumbnailContainer;
+export default ItemsContainer;
