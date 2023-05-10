@@ -56,9 +56,7 @@ function FileDropzone({ setFile }) {
   return (
     <div className="container">
       <div {...getRootProps({ style })}>
-        <form action="/items" method="post" enctype="multipart/form-data">
-          <input type="file" name="file" {...getInputProps()} />
-        </form>
+        <input type="file" {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
     </div>

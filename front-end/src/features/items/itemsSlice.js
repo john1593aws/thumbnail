@@ -19,7 +19,17 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
 
 export const addItem = createAsyncThunk('items/addItem', async (item) => {
   try {
-    const payload = await axios.post(path, item);
+    const formData = new FormData();
+    const { fileData } = item;
+
+    formData.append('file', fileData[0]);
+    const data = { ...item, ...formData };
+    console.log(data);
+    const payload = await axios.post(path, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return JSON.stringify(payload);
   } catch (error) {
     console.log(error);
