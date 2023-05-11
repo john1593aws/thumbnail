@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+const { GetObjectCommand } = require('aws-sdk');
 
 AWS.config.update({ region: 'us-east-2' });
 
@@ -10,6 +11,21 @@ const s3 = new AWS.S3({
   accessKeyId: credentials.accessKeyId,
   secretAccessKey: credentials.secretAccessKey,
 });
+
+function getObject(Key) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = (
+        await s3.getObject({ Bucket: bucketName, Key }).promise()
+      ).Body.toString('utf-8');
+
+      resolve(response);
+    } catch (err) {
+      // Handle the error or throw
+      return reject(err);
+    }
+  });
+}
 
 const getFiles = () => {
   return new Promise((resolve, reject) => {
@@ -57,4 +73,4 @@ const uploadFile = (file, key) => {
   });
 };
 
-module.exports = { s3, getFiles, uploadFile };
+module.exports = { s3, getFiles, uploadFile, getObject };

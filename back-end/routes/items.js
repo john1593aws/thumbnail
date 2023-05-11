@@ -1,6 +1,6 @@
 var express = require('express');
 const { sequelize } = require('../db');
-const { uploadFile, getFiles } = require('../storage');
+const { uploadFile, getFiles, getObject } = require('../storage');
 const multer = require('multer');
 const upload = multer();
 
@@ -14,11 +14,7 @@ router.get('/', async function (req, res) {
       'SELECT id, name FROM item.items As item;'
     );
 
-    const files = await getFiles();
-
-    for (let i = 0; i < items[0].length; i++) {
-      items[0][i].file = files.find((file) => file.Key === items[0][i].id);
-    }
+    const obj = await getObject(items[0][0].id);
 
     res.send(items);
   } catch (error) {
