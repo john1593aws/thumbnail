@@ -35,7 +35,6 @@ function FileDropzone({ setFile }) {
     (acceptedFile) => {
       // Do something with the files
       setFile(acceptedFile);
-      console.log(acceptedFile);
     },
     [setFile]
   );

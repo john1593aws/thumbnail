@@ -24,7 +24,7 @@ export const addItem = createAsyncThunk('items/addItem', async (item) => {
 
     formData.append('file', { ...fileData[0] });
     const data = { ...item };
-    console.log(data);
+
     const payload = await axios.post(path, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -49,7 +49,7 @@ export const itemsSlice = createSlice({
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items = JSON.parse(action.payload).data[0].reverse();
+        state.items = JSON.parse(action.payload).data.reverse();
       })
       .addCase(addItem.pending, (state) => {
         state.status = 'loading';

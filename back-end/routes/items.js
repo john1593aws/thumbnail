@@ -1,6 +1,6 @@
 var express = require('express');
 const { sequelize } = require('../db');
-const { uploadFile, getFiles, getObject } = require('../storage');
+const { uploadFile, getFiles, getObject, getS3Data } = require('../storage');
 const multer = require('multer');
 const upload = multer();
 
@@ -14,9 +14,14 @@ router.get('/', async function (req, res) {
       'SELECT id, name FROM item.items As item;'
     );
 
-    const obj = await getObject(items[0][0].id);
+    const s3Data = await getS3Data();
 
-    res.send(items);
+    const itemsWithFiles = items[0].map((item) => {
+      const file = s3Data.find((data) => data.Key === item.id);
+      return { ...item, file: file.Body };
+    });
+
+    res.send(itemsWithFiles);
   } catch (error) {
     res.send(error);
   }
