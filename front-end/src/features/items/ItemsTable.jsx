@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
 import { useSelector } from 'react-redux';
-import { arrayBufferToBase64, debugBase64 } from './helper';
 
 const ItemsTable = () => {
   const [items] = useSelector((state) => [state.itemsSlice.items]);
@@ -20,7 +19,8 @@ const ItemsTable = () => {
   return (
     <Card
       sx={{
-        marginTop: 6,
+        margin: '60px auto',
+        maxWidth: '30rem',
       }}
       raised
     >
@@ -32,8 +32,6 @@ const ItemsTable = () => {
                 <TableCell align="left">Name</TableCell>
                 <TableCell align="left">File Name</TableCell>
                 <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -43,17 +41,7 @@ const ItemsTable = () => {
                     <TableCell align="left">{row.name}</TableCell>
                     <TableCell align="left">{row.file.originalname}</TableCell>
                     <TableCell align="right">
-                      <IconButton>
-                        <FindInPageIcon color="primary" />
-                      </IconButton>
-                    </TableCell>
-                    <TableCell align="right">
-                      <IconButton>
-                        <FindInPageIcon color="secondary" />
-                      </IconButton>
-                    </TableCell>
-                    <TableCell align="right">
-                      <IconButton>
+                      <IconButton onClick={() => {}}>
                         <FindInPageIcon color="warning" />
                       </IconButton>
                     </TableCell>

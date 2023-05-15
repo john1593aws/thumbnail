@@ -24,7 +24,10 @@ const ItemForm = () => {
   }
 
   return (
-    <Card sx={{ marginTop: '40px', textAlign: 'center' }} raised>
+    <Card
+      sx={{ margin: '60px auto', textAlign: 'center', maxWidth: '30rem' }}
+      raised
+    >
       <CardContent>
         <Grid container flex rowSpacing={2}>
           <Grid item xs={12} justifyContent={'space-between'}>

@@ -6,3 +6,6 @@ front-end/node_modules
 
 .DS_Store
 */.env
+.vscode/settings.json
+back-end/.vscode/settings.json
+front-end/.vscode/settings.json
