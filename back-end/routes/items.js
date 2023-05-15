@@ -1,6 +1,7 @@
 var express = require('express');
 const { sequelize } = require('../db');
-const { uploadFile, getFiles, getObject, getS3Data } = require('../storage');
+const { uploadFile, getS3Data } = require('../storage');
+const imageThumbnail = require('image-thumbnail');
 const multer = require('multer');
 const upload = multer();
 
@@ -41,7 +42,7 @@ router.post('/', upload.any(), async (req, res) => {
 
   try {
     await uploadFile(file, id);
-    const { fieldname, originalname, encoding, mimetype, size } = file;
+    const { fieldname, originalname, encoding, mimetype, size, buffer } = file;
 
     const fileData = {
       fieldname,
@@ -50,6 +51,17 @@ router.post('/', upload.any(), async (req, res) => {
       mimetype,
       size,
     };
+
+    if (mimetype.startsWith('image/')) {
+      // fileData.imageEncoding = '';
+      const options = {
+        width: 75,
+        height: 75,
+        responseType: 'base64',
+        jpegOptions: { force: true, quality: 90 },
+      };
+      fileData.imageEncoding = await imageThumbnail(buffer, options);
+    }
 
     const encodedData = JSON.stringify(fileData);
 

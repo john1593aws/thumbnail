@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
 import { useSelector } from 'react-redux';
+import { Image } from '@mui/icons-material';
 
 const ItemsTable = () => {
   const [items] = useSelector((state) => [state.itemsSlice.items]);
@@ -41,9 +42,18 @@ const ItemsTable = () => {
                     <TableCell align="left">{row.name}</TableCell>
                     <TableCell align="left">{row.file.originalname}</TableCell>
                     <TableCell align="right">
-                      <IconButton onClick={() => {}}>
-                        <FindInPageIcon color="warning" />
-                      </IconButton>
+                      {row?.file?.imageEncoding ? (
+                        <IconButton onClick={() => {}}>
+                          <img
+                            alt={`row-${i}`}
+                            src={`data:${row?.file?.mimeType};base64, ${row?.file?.imageEncoding}`}
+                          />
+                        </IconButton>
+                      ) : (
+                        <IconButton onClick={() => {}}>
+                          <FindInPageIcon color="disabled" />
+                        </IconButton>
+                      )}
                     </TableCell>
                   </TableRow>
                 );
