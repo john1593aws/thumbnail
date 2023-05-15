@@ -17,15 +17,15 @@ router.get('/', async function (req, res) {
     const s3Data = await getS3Data();
 
     const itemsWithFiles = items[0].map((item) => {
-      const { name, id, file_data } = item;
+      const { name, id, file_data, url } = item;
       const file = s3Data.find((data) => data.Key === item.id);
 
       const parsedFileData = JSON.parse(file_data);
       const buffer = file.Body;
-      const x = file.Body.buffer;
       return {
         name,
         id,
+        url: file.url,
         file: { ...parsedFileData, buffer },
       };
     });
@@ -80,7 +80,12 @@ router.post('/', upload.any(), async (req, res) => {
 
       const parsedFileData = JSON.parse(file_data);
 
-      return { name, id, file: { ...parsedFileData, buffer: file?.Body } };
+      return {
+        id,
+        name,
+        url: file.url,
+        file: { ...parsedFileData, buffer: file?.Body },
+      };
     });
 
     res.send(itemsWithFiles);

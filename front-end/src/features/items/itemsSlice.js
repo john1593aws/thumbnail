@@ -13,9 +13,8 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
     const payload = await axios.get(path);
 
     const newData = payload.data.map((item) => {
-      const { file } = item;
-
-      return { ...item, file: { ...file, buffer: file.buffer.data } };
+      const { file, url } = item;
+      return { ...item, url, file: { ...file, buffer: file.buffer.data } };
     });
 
     return JSON.stringify({ ...payload, data: newData });

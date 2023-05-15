@@ -1,5 +1,4 @@
 const AWS = require('aws-sdk');
-const { GetObjectCommand } = require('aws-sdk');
 
 AWS.config.update({ region: 'us-east-2' });
 
@@ -11,21 +10,6 @@ const s3 = new AWS.S3({
   accessKeyId: credentials.accessKeyId,
   secretAccessKey: credentials.secretAccessKey,
 });
-
-function getObject(key) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const response = (
-        await s3.getObject({ Bucket: bucketName, Key: key }).promise()
-      ).Body.toString('utf-8');
-
-      resolve(response);
-    } catch (err) {
-      // Handle the error or throw
-      return reject(err);
-    }
-  });
-}
 
 async function getS3Data() {
   let d;
@@ -39,42 +23,25 @@ async function getS3Data() {
   for (const currentValue of d.Contents) {
     if (currentValue.Size > 0) {
       const goParams = { Bucket: bucketName, Key: currentValue.Key };
-      let data;
+      let data, url;
       try {
         data = await s3.getObject(goParams).promise();
+        url = s3.getSignedUrl('getObject', {
+          Bucket: bucketName,
+          Key: currentValue.Key,
+        });
       } catch (e) {
         throw e; //error
       }
       content.push({
         Body: data.Body,
         Key: currentValue.Key,
+        url,
       });
     }
   }
   return content;
 }
-
-const getFiles = () => {
-  return new Promise((resolve, reject) => {
-    try {
-      const params = {
-        Bucket: bucketName,
-      };
-
-      s3.listObjects(params, (err, data) => {
-        if (err) {
-          return reject(err);
-        }
-        if (data) {
-          console.log(data.Contents);
-          return resolve(data.Contents);
-        }
-      });
-    } catch (err) {
-      return reject(err);
-    }
-  });
-};
 
 const uploadFile = (file, key) => {
   return new Promise((resolve, reject) => {
@@ -90,7 +57,6 @@ const uploadFile = (file, key) => {
           return reject(err);
         }
         if (data) {
-          console.log(data);
           return resolve(data);
         }
       });
@@ -100,4 +66,4 @@ const uploadFile = (file, key) => {
   });
 };
 
-module.exports = { s3, getFiles, uploadFile, getObject, getS3Data };
+module.exports = { s3, uploadFile, getS3Data };
