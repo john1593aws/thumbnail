@@ -14,6 +14,7 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
 
     const newData = payload.data.map((item) => {
       const { file } = item;
+
       return { ...item, file: { ...file, buffer: file.buffer.data } };
     });
 
