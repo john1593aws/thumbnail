@@ -3,6 +3,7 @@ const { sequelize } = require('../db');
 const { uploadFile, getS3Data } = require('../storage');
 const imageThumbnail = require('image-thumbnail');
 const multer = require('multer');
+
 const upload = multer();
 
 var router = express.Router();
@@ -79,12 +80,12 @@ router.post('/', upload.any(), async (req, res) => {
 
       const parsedFileData = JSON.parse(file_data);
 
-      return { name, id, file: { ...parsedFileData, buffer: file.Body } };
+      return { name, id, file: { ...parsedFileData, buffer: file?.Body } };
     });
 
     res.send(itemsWithFiles);
   } catch (error) {
-    res.send('Items POST ERROR: ', error);
+    console.log(error);
   }
 });
 
