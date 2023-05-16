@@ -47,6 +47,22 @@ const ItemsTable = () => {
               </TableHead>
               <TableBody>
                 {items.map((row, i) => {
+                  let color = 'disabled';
+
+                  if (row.file.mimetype.includes('document')) {
+                    color = 'primary';
+                  }
+                  if (row.file.mimetype.includes('sheet')) {
+                    color = 'success';
+                  }
+                  if (row.file.mimetype.includes('pdf')) {
+                    color = 'error';
+                  }
+                  if (row.file.mimetype.includes('presentation')) {
+                    color = 'warning';
+                  }
+                  console.log(color);
+
                   return (
                     <TableRow key={i}>
                       <TableCell align="left">{row.name}</TableCell>
@@ -57,13 +73,17 @@ const ItemsTable = () => {
                         {row?.file?.imageEncoding ? (
                           <IconButton onClick={() => handleOpen(row.url)}>
                             <img
+                              style={{ borderRadius: '10px' }}
                               alt={`row-${i}`}
                               src={`data:${row?.file?.mimeType};base64, ${row?.file?.imageEncoding}`}
                             />
                           </IconButton>
                         ) : (
-                          <IconButton onClick={() => handleOpen(row.url)}>
-                            <FindInPageIcon color="disabled" />
+                          <IconButton
+                            color={color}
+                            onClick={() => handleOpen(row.url)}
+                          >
+                            <FindInPageIcon />
                           </IconButton>
                         )}
                       </TableCell>

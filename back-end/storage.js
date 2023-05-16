@@ -26,7 +26,8 @@ async function getS3Data() {
       let data, url;
       try {
         data = await s3.getObject(goParams).promise();
-        url = s3.getSignedUrl('getObject', {
+
+        url = await s3.getSignedUrl('getObject', {
           Bucket: bucketName,
           Key: currentValue.Key,
         });

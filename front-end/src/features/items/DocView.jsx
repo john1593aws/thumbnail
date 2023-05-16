@@ -3,7 +3,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import DocViewer, { DocViewerRenderers } from 'react-doc-viewer';
+import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
 
 const style = {
   position: 'absolute',
@@ -18,6 +18,7 @@ const style = {
 };
 
 const DocView = ({ handleClose, open, url }) => {
+  const docs = [{ uri: url }];
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -34,7 +35,7 @@ const DocView = ({ handleClose, open, url }) => {
     >
       <Fade in={open}>
         <Box sx={style}>
-          <img src={url} alt="img" />
+          <DocViewer documents={docs} />
         </Box>
       </Fade>
     </Modal>
