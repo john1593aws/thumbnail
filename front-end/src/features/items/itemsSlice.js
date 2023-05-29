@@ -11,13 +11,7 @@ const initialState = {
 export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
   try {
     const payload = await axios.get(path);
-
-    const newData = payload.data.map((item) => {
-      const { file, url } = item;
-      return { ...item, url, file: { ...file, buffer: file.buffer.data } };
-    });
-
-    return JSON.stringify({ ...payload, data: newData });
+    return JSON.stringify(payload.data);
   } catch (error) {
     console.error(error);
   }
@@ -25,26 +19,8 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
 
 export const addItem = createAsyncThunk('items/addItem', async (item) => {
   try {
-    const formData = new FormData();
-    const { fileData } = item;
-
-    formData.append('file', { ...fileData[0] });
-    const data = { ...item };
-
-    const payload = await axios.post(path, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-
-    console.log(payload);
-
-    const newData = payload.data.map((item) => {
-      const { file } = item;
-      return { ...item, file: { ...file, buffer: file.buffer.data } };
-    });
-
-    return JSON.stringify({ ...payload, data: newData });
+    const payload = await axios.post(path, item);
+    return JSON.stringify(payload.data[0]);
   } catch (error) {
     console.log(error);
   }
@@ -61,14 +37,14 @@ export const itemsSlice = createSlice({
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items = JSON.parse(action.payload).data.reverse();
+        state.items = JSON.parse(action.payload);
       })
       .addCase(addItem.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(addItem.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items = JSON.parse(action.payload).data.reverse();
+        state.items = JSON.parse(action.payload);
       });
   },
 });

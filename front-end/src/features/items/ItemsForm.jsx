@@ -45,9 +45,6 @@ const ItemForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <FileDropzone setFile={setFileData} />
-          </Grid>
-          <Grid item xs={12}>
             <Button fullWidth variant="contained" color="success" onClick={add}>
               Add
             </Button>
